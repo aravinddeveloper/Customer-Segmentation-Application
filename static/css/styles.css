@@ -1,0 +1,90 @@
+html{
+    font-family: Lato, sans-serif;
+}
+
+.header{
+    max-width: 900px;
+    margin: 0 auto 0 auto;
+    padding: 0 20px;
+    font-size: 24px;
+}
+
+h2{
+    margin: 0 auto 2px auto;
+    text-align: center;
+    color: whitesmoke;
+}
+
+body{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.body-div{
+    background: url('bg_image.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+}
+
+.main{
+    width: 600px;
+    margin: 0 auto;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background : transparent;
+    color: whitesmoke;
+}
+
+.form-input{
+    width: 100%;
+    margin:0;
+}
+
+.labelClass{
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 2px;
+}
+
+.inputTB{
+    /* display: block; */
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #f3f6f6;
+    border: none;
+    margin-bottom: 2px;
+    box-sizing: border-box;
+}
+
+.form-submit{
+    background-color: #3cd1ff;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 30px;
+    color: white;
+    cursor: pointer;
+}
+
+.form-submit:hover{
+    background-color: #7de6f8f1;
+}
+
+.unfilledInputMsg{
+    visibility: hidden;
+    color: rgba(255, 81, 0, 0.883);
+    margin: 0px;
+    padding: 2px 0 2px 0;
+    text-align: left;
+}
+
+button{
+    margin: 2px auto 0 auto;
+}

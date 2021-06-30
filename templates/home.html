@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Segmentation</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+
+<body>
+    <!-- <img src="static/bg_image.jpeg" alt=""> -->
+    <div class="body-div">
+        <header class="header">
+            <div class="headerdiv">
+                <h2>Customer Segmentation Application</h2>
+            </div>
+        </header>
+        <main class="main">
+            <div class="formDiv">
+                <form class="formClass" action="/predict" method="POST">
+                    <p class="form-input">
+                        <label for="age" class="labelClass">Age</label>
+                        <input id="age" class="inputTB" type="number" name="age" placeholder="Enter Age" min="21"
+                            max="89" />
+                    <p class="unfilledInputMsg" id="ageVal">Please fill the input</p>
+                    <label for="gender" class="labelClass">Gender</label>
+                    <select name="gender" id="gender" class="inputTB">
+                        <option value="" disabled selected hidden>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <p class="unfilledInputMsg" id="genderVal">Please fill the input</p>
+                    <label for="married" class="labelClass">Married</label>
+                    <select name="married" id="married" class="inputTB">
+                        <option value="" disabled selected hidden>Are you married?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <p class="unfilledInputMsg" id="marriedVal">Please fill the input</p>
+                    <label for="graduated" class="labelClass">Graduated</label>
+                    <select name="graduated" id="graduated" class="inputTB">
+                        <option value="" disabled selected hidden>Are you graduated?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <p class="unfilledInputMsg" id="graduatedVal">Please fill the input</p>
+                    <label for="profession" class="labelClass">Profession</label>
+                    <select name="profession" id="profession" class="inputTB">
+                        <option value="" disabled selected hidden>Select your profession</option>
+                        <option value="Artist">Artist</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Engineer">Engineer</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Executive">Executive</option>
+                        <option value="Healthcare">Healthcare</option>
+                        <option value="Homemaker">Homemaker</option>
+                        <option value="Lawyer">Lawyer</option>
+                        <option value="Marketing">Marketing</option>
+                    </select>
+                    <p class="unfilledInputMsg" id="professionVal">Please fill the input</p>
+                    <label for="Experience" class="labelClass">Experience (in yrs)</label>
+                    <input id="Experience" class="inputTB" type="number" name="experience"
+                        placeholder="Enter Work Experience" min="0" max="14" />
+                    <p class="unfilledInputMsg" id="ExperienceVal">Please fill the input</p>
+                    <label for="spendingscore" class="labelClass">Spending Score</label>
+                    <select name="spendingscore" id="spendingscore" class="inputTB">
+                        <option value="" disabled selected hidden>Rate your spending score</option>
+                        <option value="Low">Low</option>
+                        <option value="Average">Average</option>
+                        <option value="High">High</option>
+                    </select>
+                    <p class="unfilledInputMsg" id="spendingscoreVal">Please fill the input</p>
+                    <label for="familysize" class="labelClass">Family Size (Total members)</label>
+                    <input id="familysize" class="inputTB" type="number" name="familysize"
+                        placeholder="Enter Family Size" min="1" max="9" />
+                    <p class="unfilledInputMsg" id="familysizeVal">Please fill the input</p>
+                    <label for="category" class="labelClass">Category</label>
+                    <select name="category" id="category" class="inputTB">
+                        <option value="" disabled selected hidden>Select a suitable category</option>
+                        <option value="cat_1">1</option>
+                        <option value="cat_2">2</option>
+                        <option value="cat_3">3</option>
+                        <option value="cat_4">4</option>
+                        <option value="cat_5">5</option>
+                        <option value="cat_6">6</option>
+                        <option value="cat_7">7</option>
+                    </select>
+                    <p class="unfilledInputMsg" id="categoryVal">Please fill the input</p>
+                    <button type="submit" class="form-submit">Predict</button>
+                    </p>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="static/home.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $(function () {
+            $('.form-submit').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url:'/predict',
+                    data:$('form').serialize(),
+                    method:'POST',
+                    success:function(response){
+                        var json_result = JSON.parse(response);
+                        var category = json_result['Segmentation'];
+                        swal({
+                            title:'Prediction Result',
+                            text: 'The Customer belongs to catergory-'+category,
+                            icon: 'success'
+                        }).then(function(){
+                            location.reload();
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+</body>
+
+</html>
